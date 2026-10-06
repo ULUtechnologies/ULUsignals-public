@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ajIconGradient" x1="18" y1="12" x2="82" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="currentColor" stop-opacity="1"/>
+      <stop offset=".52" stop-color="currentColor" stop-opacity=".78"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity=".42"/>
+    </linearGradient>
+  </defs>
+  <circle class="aj-grad" cx="50" cy="50" r="32"/>
+  <ellipse class="aj-fine" cx="50" cy="50" rx="15" ry="32"/>
+  <path class="aj-fine" d="M20 50h60M27 32h46M27 68h46"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg class="aj-pedestal-svg" viewBox="0 0 160 42" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <ellipse class="aj-ped-shadow" cx="80" cy="28" rx="66" ry="11"/>
+  <ellipse class="aj-ped-body" cx="80" cy="23" rx="61" ry="12"/>
+  <ellipse class="aj-ped-top" cx="80" cy="17" rx="54" ry="8"/>
+  <ellipse class="aj-ped-rim" cx="80" cy="23" rx="61" ry="12"/>
+  <path class="aj-ped-highlight" d="M42 16c18-4 58-4 76 0"/>
+</svg>
