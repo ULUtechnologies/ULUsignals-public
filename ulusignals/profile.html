@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ULUsignals - Revised Profile</title>
+<style>
+  :root{
+    --bg:#101a34;
+    --panel:#0f2b5d;
+    --panel-2:#112b55;
+    --panel-3:#0b2147;
+    --line:#2f4f80;
+    --line-soft:#355b94;
+    --text:#f4f7fb;
+    --muted:#a9b4c8;
+    --muted-2:#7f8ca5;
+    --tab:#cfd8e6;
+    --tab-text:#2a3140;
+    --accent:#f3c84d;
+    --blue:#3874d9;
+    --blue-2:#234b94;
+    --field:#10264c;
+    --field-focus:#17386d;
+    --chip:#173765;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  .app{min-height:100vh;background:linear-gradient(#0e2a59 0 94px,var(--bg) 94px)}
+  .topbar{
+    height:94px;
+    background:#edf2f8;
+    color:#233147;
+    display:flex;
+    align-items:flex-end;
+    padding:0 18px;
+    gap:28px;
+  }
+  .brand{
+    align-self:center;
+    min-width:250px;
+    font-size:28px;
+    font-weight:800;
+    color:#214983;
+    letter-spacing:.2px;
+  }
+  .brand small{display:block;font-size:11px;letter-spacing:2.2px;margin-left:48px;margin-top:-5px}
+  .main-tabs{display:flex;gap:10px;height:58px;align-items:flex-end}
+  .main-tab{
+    padding:16px 24px 18px;
+    background:#cbd6e4;
+    border-radius:18px 18px 0 0;
+    font-size:18px;
+    font-weight:700;
+  }
+  .admin{margin-left:auto;align-self:center;font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px}
+  .avatar{width:38px;height:38px;border-radius:10px;background:#cbd6e4;display:grid;place-items:center}
+  .nav-strip{height:62px;background:#0a2b63}
+  .content-wrap{padding:0 12px 30px}
+  .profile-shell{
+    margin-top:0;
+    border:1px solid rgba(102,130,173,.35);
+    background:linear-gradient(180deg,#123468 0%,#101b36 82%);
+    min-height:500px;
+    padding:30px 22px 22px;
+  }
+  .section-tabs{
+    display:flex;gap:28px;align-items:center;border-bottom:1px solid rgba(144,164,196,.25);padding-bottom:14px;margin-bottom:20px
+  }
+  .section-tab{color:#8ea0bd;font-weight:700;font-size:16px;padding:8px 4px;position:relative}
+  .section-tab.active{color:var(--accent)}
+  .section-tab.active:after{content:"";position:absolute;left:0;right:0;bottom:-15px;height:3px;background:var(--accent);border-radius:2px}
+  .section-tab span{margin-right:7px}
+  .profile-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:18px}
+  .profile-head h1{font-size:22px;margin:0 0 5px}
+  .profile-head p{margin:0;color:var(--muted);font-size:14px}
+  .profile-actions{display:flex;gap:10px;align-items:center}
+  .edit-btn,.save-btn{border:1px solid #4a75c7;color:white;padding:12px 24px;border-radius:10px;font-weight:700;cursor:pointer}
+  .edit-btn{background:#17386d}
+  .save-btn{background:#274d93}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{
+    background:rgba(11,33,71,.50);
+    border:1px solid rgba(81,111,158,.42);
+    border-radius:10px;
+    padding:16px;
+  }
+  .card.full{grid-column:1 / -1}
+  .card-title{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:800;margin-bottom:14px}
+  .num{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#1b64d7;color:white;font-size:13px}
+  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field.full{grid-column:1/-1}
+  label{font-size:12px;font-weight:700;color:#dce5f4}
+  .hint{font-size:11px;color:var(--muted);margin-top:-2px}
+  input,select,textarea{
+    width:100%;
+    background:var(--field);
+    border:1px solid var(--line);
+    color:var(--text);
+    border-radius:7px;
+    padding:10px 12px;
+    outline:none;
+    font:inherit;
+    font-size:13px;
+  }
+  input:focus,select:focus,textarea:focus{border-color:#5f8bd5;background:var(--field-focus)}
+  textarea{min-height:76px;resize:vertical}
+  .topics-textarea{min-height:110px}
+  .audience-textarea{min-height:156px}
+  input::placeholder,textarea::placeholder{color:#8492aa}
+  select option{background:#122952;color:white}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:4px}
+  .chip{background:var(--chip);border:1px solid #315b9b;color:#dce9ff;border-radius:16px;padding:7px 10px;font-size:12px}
+  .option-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .check-card{display:flex;align-items:center;gap:8px;background:#10264c;border:1px solid var(--line);border-radius:7px;padding:9px 10px;font-size:12px}
+  .check-card input{width:auto}
+  .channels{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .channel{display:flex;align-items:center;justify-content:space-between;background:#10264c;border:1px solid var(--line);border-radius:7px;padding:10px;font-size:12px}
+  .channel-content{display:flex;align-items:center;gap:8px;min-width:0}
+  .channel-logo{width:20px;height:20px;object-fit:contain;flex:0 0 20px}
+  .channel b{font-weight:700}
+  .other-outcome{margin-top:8px}
+  .channel input{width:auto}
+  .split{display:grid;grid-template-columns:1.2fr .9fr;gap:20px}
+  .radio-line{display:flex;gap:8px;align-items:flex-start;margin:10px 0;color:#e7eef9;font-size:13px}
+  .radio-line input{width:auto;margin-top:2px}
+  .sub{color:var(--muted);font-size:11px;margin-top:3px}
+  .consent-row{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:end}
+  .consents{display:flex;flex-direction:column;gap:10px}
+  .consent{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:#d7e1f1}
+  .consent input{width:auto;margin-top:2px}
+  .safeguards{display:grid;grid-template-columns:1.05fr .75fr 1.25fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .sg-head,.sg-cell{padding:9px 11px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:12px}
+  .sg-head{background:#10264c;font-weight:800;color:#e9f0fb}
+  .sg-cell:nth-child(3n){border-right:none}
+  .sg-row-end{border-bottom:none}
+  .sg-cell input,.sg-cell select{padding:8px 10px;font-size:12px}
+  .privacy{margin-top:14px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px}
+  .footer{padding:24px;text-align:center;color:#77839a;font-size:13px}
+  .footer strong{display:block;font-size:24px;color:#6d7a92;margin-bottom:8px}
+
+  .danger-zone{
+    margin-top:16px;
+    margin-left:auto;
+    width:min(760px,64%);
+    border:1px solid rgba(230,84,84,.65);
+    background:rgba(11,33,71,.68);
+    border-radius:10px;
+    padding:12px 14px;
+  }
+  .danger-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .danger-title{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:800;color:#f3c84d;white-space:nowrap}
+  .danger-copy{color:#b9c5d9;font-size:12px;line-height:1.45}
+  .danger-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .danger-action-btn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    text-align:left;
+    background:rgba(16,38,76,.8);
+    border:1px solid #ef6262;
+    color:#fff;
+    padding:10px 12px;
+    border-radius:7px;
+    cursor:pointer;
+  }
+  .danger-action-btn:hover{background:rgba(239,98,98,.10)}
+  .danger-action-left{display:flex;align-items:flex-start;gap:9px;min-width:0}
+  .danger-action-icon{color:#ef6262;font-size:15px;line-height:1.2;margin-top:1px}
+  .danger-action-label{display:block;color:#ff8a8a;font-size:12px;font-weight:800;line-height:1.2}
+  .danger-action-desc{display:block;color:#c1ccdc;font-size:10px;line-height:1.35;margin-top:2px;font-weight:500}
+  .danger-action-arrow{color:#ef6262;font-size:18px;flex:0 0 auto}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(4,10,24,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999}
+  .modal-backdrop.open{display:flex}
+  .delete-modal{width:min(560px,100%);background:#10264c;border:1px solid #5b6f97;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.45);padding:22px}
+  .delete-modal h2{margin:0 0 8px;font-size:22px}
+  .delete-modal p{color:#b9c5d9;font-size:13px;line-height:1.55;margin:8px 0}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .modal-close{background:transparent;border:0;color:#dce5f4;font-size:22px;line-height:1;cursor:pointer;padding:0 2px}
+  .cancel-info{border:1px solid #1b64d7;background:rgba(27,100,215,.08);border-radius:8px;padding:12px;margin:14px 0;color:#cfe0ff;font-size:12px;line-height:1.5;display:flex;gap:9px;align-items:flex-start}
+  .cancel-info-icon{width:18px;height:18px;border:1px solid #2d7ae2;border-radius:50%;display:grid;place-items:center;color:#74a9ff;flex:0 0 18px;font-size:11px;font-weight:800}
+  .cancel-modal-textarea{min-height:70px}
+  .delete-warning{border:1px solid rgba(239,98,98,.5);background:#112b55;border-radius:8px;padding:12px;margin:14px 0;color:#dce5f4;font-size:12px;line-height:1.5}
+  .warning-pointer{color:#f3b33d;font-size:12px;display:inline-block;margin-right:8px;transform:translateY(-1px) rotate(90deg)}
+  .confirm-label{display:block;margin:14px 0 6px;color:#e8edf7;font-size:12px;font-weight:700}
+  .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
+  .cancel-modal-btn,.confirm-delete-btn{padding:10px 16px;border-radius:8px;font-weight:800;cursor:pointer}
+  .cancel-modal-btn{background:#17386d;border:1px solid #4a75c7;color:white}
+  .confirm-delete-btn{background:#b52f3f;border:1px solid #e36a77;color:white}
+  .confirm-delete-btn:disabled{opacity:.45;cursor:not-allowed}
+  .modal-note{font-size:11px;color:#8fa0bc;margin-top:10px}
+  @media(max-width:1000px){
+    .topbar{gap:10px}.brand{min-width:180px}.main-tab{padding:16px 14px}.grid{grid-template-columns:1fr}.card.full{grid-column:auto}.channels{grid-template-columns:repeat(2,1fr)}.split,.consent-row{grid-template-columns:1fr}.safeguards{grid-template-columns:1fr}.sg-head{display:none}.sg-cell{border-right:none}.sg-cell:nth-child(3n){border-bottom:1px solid var(--line)}.sg-cell:nth-last-child(-n+3){border-bottom:none}.field-grid{grid-template-columns:1fr}.option-grid{grid-template-columns:1fr 1fr}.danger-zone{width:100%;margin-left:0}.danger-header{align-items:flex-start;flex-direction:column;gap:5px}.danger-actions{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+ 
+  <main class="content-wrap">
+    <section class="profile-shell">
+      <div class="section-tabs">
+        <div class="section-tab active"><span>♙</span>Profile</div>
+        <div class="section-tab"><span>▦</span>Company</div>
+        <div class="section-tab"><span>⌁</span>Change Password</div>
+      </div>
+
+      <div class="profile-head">
+        <div>
+          <h1>Creator Profile</h1>
+          <p>This information helps ULUsignals understand you and create messaging that connects with your audience.</p>
+        </div>
+        <div class="profile-actions"><button class="edit-btn" type="button">Edit</button><button class="save-btn" type="button">Save</button></div>
+      </div>
+
+      <div class="grid">
+        <section class="card">
+          <div class="card-title"><span class="num">1</span> Basic Information</div>
+          <div class="field-grid">
+            <div class="field"><label>Display / professional name *</label><input placeholder="e.g., Jane Smith"></div>
+            <div class="field"><label>Country</label><select id="countrySelect"></select></div>
+
+            <div class="field"><label>Email *</label><input type="email" placeholder="e.g., jane@example.com"></div>
+            <div class="field"><label>State / District</label><select id="stateDistrictSelect"><option value="">Select state / district</option></select></div>
+
+            <div class="field"><label>Role or creator identity *</label><input placeholder="e.g., Founder, Advisor, Educator, Filmmaker"></div>
+            <div class="field"><label>Time Zone</label><select><option>(GMT-07:00) Pacific Time (US & Canada)</option><option>(GMT-08:00) Pacific Time</option><option>(GMT-06:00) Mountain Time</option><option>(GMT-05:00) Central Time</option><option>(GMT-04:00) Eastern Time</option></select></div>
+
+            <div class="field"><label>Organization / brand <span style="color:#98a6bc;font-weight:500">(optional)</span></label><input placeholder="e.g., Acme Media"></div>
+            <div class="field"><label>Primary language *</label><select><option>English (en)</option><option>Spanish (es)</option><option>French (fr)</option><option>German (de)</option><option>Portuguese (pt)</option></select></div>
+
+            <div class="field"><label>Job Title</label><select><option>Select job title</option><option>Owner / Founder</option><option>Co-Founder</option><option>President</option><option>Chief Executive Officer (CEO)</option><option>Chief Operating Officer (COO)</option><option>Chief Marketing Officer (CMO)</option><option>Chief Technology Officer (CTO)</option><option>Vice President</option><option>Director</option><option>Manager</option><option>Consultant / Advisor</option><option>Creator / Influencer</option><option>Educator / Instructor</option><option>Writer / Author</option><option>Filmmaker / Producer</option><option>Sales Professional</option><option>Marketing Professional</option><option>Other</option></select></div>
+            <div class="field"><label>Website(s) <span style="color:#98a6bc;font-weight:500">(optional)</span></label><input placeholder="e.g., example.com, portfolio.com"></div>
+
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-title"><span class="num">2</span> Audience & Goals</div>
+          <div class="field-grid">
+            <div class="field"><label>Primary audience <span style="color:#98a6bc;font-weight:500">(optional)</span></label><div class="hint">Describe the people you help.</div><textarea class="audience-textarea" placeholder="e.g., Small business owners, solopreneurs, marketing teams"></textarea></div>
+            <div class="field"><label>Primary outcome <span style="color:#98a6bc;font-weight:500">(optional)</span></label><div class="hint">What is the main result you help them achieve?</div><div class="option-grid"><label class="check-card"><input type="checkbox">Increase Awareness</label><label class="check-card"><input type="checkbox">Generate Leads</label><label class="check-card"><input type="checkbox">Increase Sales</label><label class="check-card"><input type="checkbox">Build Community</label><label class="check-card"><input type="checkbox">Educate / Teach</label><label class="check-card"><input type="checkbox">Save Time</label><label class="check-card"><input type="checkbox">Improve Skills</label><label class="check-card"><input type="checkbox">Entertain / Inspire</label><label class="check-card"><input type="checkbox">Other</label></div><input class="other-outcome" placeholder="Other:"></div>
+            <div class="field full"><label>Main topics / expertise <span style="color:#98a6bc;font-weight:500">(optional)</span></label><div class="hint">Describe your main topic(s) and expertise. Up to 300 words.</div><textarea class="topics-textarea" id="topicsExpertise" placeholder="Describe your main topic(s) and expertise..."></textarea><div class="hint"><span id="topicsWordCount">0</span>/300 words</div></div>
+         </div>
+        </section>
+
+        <section class="card full">
+          <div class="card-title"><span class="num">3</span> Channels & Direction</div>
+          <div class="split">
+            <div>
+              <label>Priority channels <span style="color:#98a6bc;font-weight:500">(optional)</span></label>
+              <div class="hint" style="margin:4px 0 9px">Select the channels and formats you create on most.</div>
+              <div class="channels">
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/YouTube-logo.png" alt="YouTube"><b>YouTube</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/instagram-logo.png" alt="Instagram"><b>Instagram</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/tiktok-logo2.png" alt="TikTok"><b>TikTok</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/linkedin-logo.png" alt="LinkedIn"><b>LinkedIn</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/facebook-logo.png" alt="Facebook"><b>Facebook</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/twitter-logo.png" alt="X (Twitter)"><b>X (Twitter)</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/email-icon2.png" alt="Email / Newsletter"><b>Email / Newsletter</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/podcast-icon.png" alt="Podcast"><b>Podcast</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><img class="channel-logo" src="logos/website-logo.png" alt="Blog / Website"><b>Blog / Website</b></span><input type="checkbox"></label>
+                <label class="channel"><span class="channel-content"><b>••• Other</b></span><input type="checkbox"></label>
+              </div>
+            </div>
+            <div style="border-left:1px solid rgba(80,108,150,.5);padding-left:20px">
+              <label>Creator Direction</label>
+              <div class="hint" style="margin-top:5px">Receive "in script" direction from ULUsignals about your on-camera delivery.</div>
+              <label class="radio-line"><input type="radio" name="dir" checked><span><b>Yes</b><div class="sub">I want recommended delivery ideas.</div></span></label>
+              <label class="radio-line"><input type="radio" name="dir"><span><b>Not now</b><div class="sub">I'll decide later.</div></span></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="card full">
+          <div class="card-title"><span class="num">4</span> Rights & Processing Consent</div>
+          <div class="consent-row">
+            <div class="consents">
+              <label class="consent"><input type="checkbox">I confirm I own or have permission to use the content I upload to ULUsignals and grant permission for it to be analyzed and used to generate recommendations.</label>
+              <label class="consent"><input type="checkbox">I understand that my information will be used only to improve my ULUsignals experience and will not be shared publicly.</label>
+            </div>
+            <div class="field"><label>Date & time</label><input type="text" value="May 23, 2026   10:30 AM PDT"></div>
+          </div>
+        </section>
+
+        <section class="card full">
+          <div class="card-title"><span class="num">5</span> Boundaries and Safeguards</div>
+          <div class="safeguards">
+            <div class="sg-cell">Are there topics, claims, customer details, or personal stories I should never use?</div>
+            <div class="sg-cell"><select><option>No restrictions</option><option>Yes — restrictions apply</option><option>Not sure</option></select></div>
+            <div class="sg-cell"><input placeholder="List topics, claims, names, or personal stories to avoid..."></div>
+
+            <div class="sg-cell">Does anything you publish require legal, brand, employer, medical, financial, or other approval?</div>
+            <div class="sg-cell"><select><option>No approval required</option><option selected>Approval required for some content</option><option>Approval required for all content</option><option>Not sure</option></select></div>
+            <div class="sg-cell"><input placeholder="If yes, describe the approval process and who must approve..."></div>
+
+            <div class="sg-cell">What should I always ask permission before including?</div>
+            <div class="sg-cell"><select><option>Nothing requires permission</option><option selected>Some content requires permission</option><option>Not sure</option></select></div>
+            <div class="sg-cell"><input placeholder="List categories, people, or content types..."></div>
+
+            <div class="sg-cell sg-row-end">Is any of the material you share private, confidential, or time-limited?</div>
+            <div class="sg-cell sg-row-end"><select><option>No</option><option selected>Yes — private or confidential</option><option>Yes — time-limited</option><option>Yes — both</option><option>Not sure</option></select></div>
+            <div class="sg-cell sg-row-end"><input placeholder="If yes, specify what and any time limits..."></div>
+          </div>
+          <div class="privacy">🔒 Your profile is private to you. ULUsignals uses this information to personalize and improve your experience.</div>
+        </section>
+      </div>
+
+        <section class="card full danger-zone">
+          <div class="danger-header">
+            <div class="danger-title">⚠ Danger Zone</div>
+            <div class="danger-copy">These actions are permanent and can affect your account and data.</div>
+          </div>
+          <div class="danger-actions">
+            <button class="danger-action-btn" id="openCancelModal" type="button">
+              <span class="danger-action-left">
+                <span class="danger-action-icon">⚠</span>
+                <span>
+                  <span class="danger-action-label">Cancel Account</span>
+                  <span class="danger-action-desc">Cancel this account and stop billing.</span>
+                </span>
+              </span>
+              <span class="danger-action-arrow">›</span>
+            </button>
+            <button class="danger-action-btn" id="openDeleteModal" type="button">
+              <span class="danger-action-left">
+                <span class="danger-action-icon">⚠</span>
+                <span>
+                  <span class="danger-action-label">Delete Account</span>
+                  <span class="danger-action-desc">Permanently delete this account and all data.</span>
+                </span>
+              </span>
+              <span class="danger-action-arrow">›</span>
+            </button>
+          </div>
+        </section>
+    </section>
+  </main>
+
+  <footer class="footer"><strong>ULU</strong>Privacy Policy &nbsp;&nbsp;&nbsp; Terms & Conditions<br><br>Copyright © 2026 ULU TECHNOLOGIES. All rights reserved</footer>
+</div>
+
+<div class="modal-backdrop" id="cancelAccountModal" aria-hidden="true">
+  <div class="delete-modal" role="dialog" aria-modal="true" aria-labelledby="cancelAccountModalTitle">
+    <div class="modal-head">
+      <h2 id="cancelAccountModalTitle">Cancel Account</h2>
+      <button class="modal-close" id="closeCancelAccountModal" type="button" aria-label="Close cancel account dialog">×</button>
+    </div>
+    <p>Cancel your account to stop billing. Your data will be retained for 30 days in case you change your mind.</p>
+    <div class="cancel-info">
+      <span class="cancel-info-icon" aria-hidden="true">i</span>
+      <span>You have 30 days to reactivate.<br>You will lose access when the account is canceled.</span>
+    </div>
+    <label class="confirm-label" for="cancelReason">Reason <span style="font-weight:500;color:#8fa0bc">(optional)</span></label>
+    <textarea class="cancel-modal-textarea" id="cancelReason" placeholder="Tell us why you are canceling (optional)..."></textarea>
+    <div class="modal-actions">
+      <button class="cancel-modal-btn" id="keepAccountBtn" type="button">Keep Account</button>
+      <button class="confirm-delete-btn" id="confirmCancelAccountBtn" type="button">Cancel Account</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="deleteModal" aria-hidden="true">
+  <div class="delete-modal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+    <div class="modal-head">
+      <h2 id="deleteModalTitle">Delete Account</h2>
+      <button class="modal-close" id="closeDeleteModal" type="button" aria-label="Close delete account dialog">×</button>
+    </div>
+    <p>This will permanently delete your account and ALL data.<br>This action cannot be undone.</p>
+    <div class="delete-warning">
+      <strong style="color:#ff6f73">⚠ &nbsp;This action is permanent and cannot be undone.</strong>
+      <ul style="margin:8px 0 0 28px;padding:0;color:#ff8a8a">
+        <li>All users will be permanently removed</li>
+        <li>All communications and data will be deleted</li>
+        <li>Billing history will be removed</li>
+      </ul>
+    </div>
+    <label class="confirm-label" for="deleteConfirmInput">To confirm, type <b>DELETE</b> in the box below.</label>
+    <input id="deleteConfirmInput" type="text" autocomplete="off" placeholder="Type DELETE to confirm">
+    <div class="modal-actions">
+      <button class="cancel-modal-btn" id="cancelDeleteModal" type="button">Cancel</button>
+      <button class="confirm-delete-btn" id="confirmDeleteBtn" type="button" disabled>Delete Account</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const countries = [
+  "United States","Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo, Democratic Republic of the","Congo, Republic of the","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea, North","Korea, South","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Macedonia","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"
+];
+const regions = {
+  "United States":["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],
+  "Canada":["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Northwest Territories","Nova Scotia","Nunavut","Ontario","Prince Edward Island","Quebec","Saskatchewan","Yukon"],
+  "Australia":["Australian Capital Territory","New South Wales","Northern Territory","Queensland","South Australia","Tasmania","Victoria","Western Australia"],
+  "United Kingdom":["England","Northern Ireland","Scotland","Wales"]
+};
+const countrySelect=document.getElementById('countrySelect');
+const stateSelect=document.getElementById('stateDistrictSelect');
+countrySelect.innerHTML = countries.map((c,i)=>`<option value="${c}"${i===0?' selected':''}>${c}</option>`).join('');
+function loadRegions(){
+  const list=regions[countrySelect.value]||[];
+  stateSelect.innerHTML='<option value="">'+(list.length?'Select state / district':'Not applicable / enter as needed')+'</option>'+list.map(r=>`<option>${r}</option>`).join('');
+}
+countrySelect.addEventListener('change',loadRegions); loadRegions();
+const topics=document.getElementById('topicsExpertise'), counter=document.getElementById('topicsWordCount');
+function enforceWordLimit(){
+  let words=topics.value.trim()?topics.value.trim().split(/\s+/):[];
+  if(words.length>300){topics.value=words.slice(0,300).join(' ');words=words.slice(0,300);}
+  counter.textContent=words.length;
+}
+topics.addEventListener('input',enforceWordLimit);
+
+const cancelAccountModal=document.getElementById('cancelAccountModal');
+const openCancelModal=document.getElementById('openCancelModal');
+const closeCancelAccountModal=document.getElementById('closeCancelAccountModal');
+const keepAccountBtn=document.getElementById('keepAccountBtn');
+const confirmCancelAccountBtn=document.getElementById('confirmCancelAccountBtn');
+
+function openCancelAccount(){
+  cancelAccountModal.classList.add('open');
+  cancelAccountModal.setAttribute('aria-hidden','false');
+}
+function closeCancelAccount(){
+  cancelAccountModal.classList.remove('open');
+  cancelAccountModal.setAttribute('aria-hidden','true');
+}
+openCancelModal.addEventListener('click',openCancelAccount);
+closeCancelAccountModal.addEventListener('click',closeCancelAccount);
+keepAccountBtn.addEventListener('click',closeCancelAccount);
+cancelAccountModal.addEventListener('click',e=>{if(e.target===cancelAccountModal)closeCancelAccount();});
+confirmCancelAccountBtn.addEventListener('click',()=>{
+  alert('Demo only: this is where ULUsignals would submit the account cancellation request.');
+  closeCancelAccount();
+});
+
+const deleteModal=document.getElementById('deleteModal');
+const openDeleteModal=document.getElementById('openDeleteModal');
+const closeDeleteModal=document.getElementById('closeDeleteModal');
+const cancelDeleteModal=document.getElementById('cancelDeleteModal');
+const deleteConfirmInput=document.getElementById('deleteConfirmInput');
+const confirmDeleteBtn=document.getElementById('confirmDeleteBtn');
+function openDelete(){
+  deleteModal.classList.add('open');
+  deleteModal.setAttribute('aria-hidden','false');
+  deleteConfirmInput.value='';
+  confirmDeleteBtn.disabled=true;
+  setTimeout(()=>deleteConfirmInput.focus(),50);
+}
+function closeDelete(){deleteModal.classList.remove('open');deleteModal.setAttribute('aria-hidden','true');}
+openDeleteModal.addEventListener('click',openDelete);
+closeDeleteModal.addEventListener('click',closeDelete);
+cancelDeleteModal.addEventListener('click',closeDelete);
+deleteModal.addEventListener('click',e=>{if(e.target===deleteModal)closeDelete();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(deleteModal.classList.contains('open')) closeDelete();
+    if(cancelAccountModal.classList.contains('open')) closeCancelAccount();
+  }
+});
+deleteConfirmInput.addEventListener('input',()=>{confirmDeleteBtn.disabled=deleteConfirmInput.value.trim()!=='DELETE';});
+confirmDeleteBtn.addEventListener('click',()=>{
+  if(deleteConfirmInput.value.trim()!=='DELETE') return;
+  alert('Demo only: this is where ULUsignals would submit the authenticated account deletion request.');
+  closeDelete();
+});
+</script>
+
+</body>
+</html>

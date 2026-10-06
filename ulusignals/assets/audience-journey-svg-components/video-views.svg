@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ajIconGradient" x1="18" y1="12" x2="82" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="currentColor" stop-opacity="1"/>
+      <stop offset=".52" stop-color="currentColor" stop-opacity=".78"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity=".42"/>
+    </linearGradient>
+  </defs>
+  <rect class="aj-grad" x="12" y="22" width="76" height="52" rx="13"/>
+  <path class="aj-dot" d="M42 36l24 13-24 13V36Z"/>
+  <path class="aj-shine" d="M24 31h30"/>
+</svg>
